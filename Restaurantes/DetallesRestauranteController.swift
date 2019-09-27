@@ -9,9 +9,20 @@
 import Foundation
 import UIKit
 
-class DetallesRestauranteController: UIViewController {
-    
+class DetallesRestauranteController: UIViewController{
+    var restaurante : Restaurante?
+    @IBOutlet weak var lblTelefono: UILabel!
+    @IBOutlet weak var lblDescripcion: UILabel!
+    @IBOutlet weak var lblDireccion: UILabel!
     override func viewDidLoad() {
-        <#code#>
+        
+        self.title = restaurante!.nombre
+        
+        lblDescripcion.text = "\(restaurante!.descripcion!)"
+        
+        lblTelefono.text = "\(restaurante!.telefono!)"
+        
+        lblDireccion.text = "\(restaurante!.direccion!)"
+        
     }
 }

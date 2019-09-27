@@ -11,9 +11,13 @@ import UIKit
 
 class RestaurantesController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var tvRestaurante: UITableView!
     var restaurantes : [Restaurante] = []
     
     override func viewDidLoad() {
+        restaurantes.append(Restaurante(nombre: "Pollo Loco", direccion: "Calle Ocho" , telefono: 6661258763, descripcion: "Es un restaurante que vende pollo asado." ))
+        
+        restaurantes.append(Restaurante(nombre: "Sushi loco", direccion: "Av. Juarez 5", telefono: 6471141625, descripcion: "Sushi muy bueno"))
         
         
     }
@@ -31,5 +35,13 @@ class RestaurantesController: UIViewController, UITableViewDelegate, UITableView
         celda?.textLabel?.text = restaurantes[indexPath.row].nombre
         
         return celda!
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToDetallesRestaurante" {
+            let destino = segue.destination as?
+            DetallesRestauranteController
+            destino?.restaurante = restaurantes[tvRestaurante.indexPathForSelectedRow!.row]
+        }
+        
     }
 }
